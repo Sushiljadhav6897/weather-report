@@ -130,4 +130,25 @@ class LoginController extends Controller
       
         return view('dashboard',$data);
     }
+    public function adduser(){
+        return view('adduser');
+    }
+
+    public function user_add(Request $request){
+        $request->validate([
+           'name' => 'required | string',
+           'email' => 'required',
+           'password' => 'required | min:10'
+        ]);
+       $password = Crypt::encryptString($request->password);
+       
+       $data= [
+        'name' => $request->name, 
+        'email'=>$request->email,  
+        'password'=>$password,
+       ];
+       
+       $result = CityrecordsComponent::create($data);
+        return redirect()->route('post.update')->with("user_add","user add successfully");
+    }
 }

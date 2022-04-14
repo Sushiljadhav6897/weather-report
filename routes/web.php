@@ -31,3 +31,6 @@ Route::get('/userdashboard',[LoginController::class,'viewUser'])->name('userdash
 Route::get('/logout',[LoginController::class, 'logout']);
 
 Route::post('/search',[LoginController::class,'search']);
+
+Route::get('/adduser',[LoginController::class,'adduser']);
+Route::post('add-user',[LoginController::class,'user_add'])->name('user.add');
